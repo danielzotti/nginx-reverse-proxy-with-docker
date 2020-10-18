@@ -1,0 +1,11 @@
+deploy_test:
+  stage: deploy
+  environment: Dev
+  script:
+    - "docker-compose -f websites/website1/docker-compose.yml -p website1 up -d --build"
+    - "docker-compose -f websites/website2/docker-compose.yml -p website2 up -d --build"
+    - "docker-compose -f proxy/docker-compose.deploy.yml -p proxy up -d --build"
+  only:
+    - dev
+  tags:
+    - "gitlab-runner-tag"

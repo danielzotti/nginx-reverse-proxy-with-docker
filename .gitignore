@@ -1,0 +1,4 @@
+.idea
+#proxy/certs/*
+#proxy/htpasswd/*
+#.htpasswd

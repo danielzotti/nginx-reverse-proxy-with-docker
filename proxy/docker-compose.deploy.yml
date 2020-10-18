@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  proxy:
+    container_name: nginx-reverse-proxy
+    hostname: nginx-reverse-proxy
+    image: nginx-reverse-proxy
+    build: ./
+    networks:
+      - website1
+      - website2
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /etc/nginx/htpasswd:/etc/nginx/htpasswd
+      - /etc/nginx/certs:/etc/nginx/certs
+
+networks:
+  website1:
+    external:
+      name: website1_default
+  website2:
+    external:
+      name: website2_default
